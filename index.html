@@ -1,0 +1,374 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>116年演練規劃</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=LXGW+WenKai+TC:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&display=swap">
+<style id="page-style">
+/* Layout: a wall-calendar year sheet — 12 month blocks in a grid, a side sheet for the chosen day, an unsaved-changes bar pinned to the bottom. */
+:root{
+  --bg:#f3f5f4; --paper:#ffffff; --ink:#1d2a33; --muted:#66737c; --line:#d9dfe1;
+  --red:#c8372d; --red-soft:#fbe4e1; --ev-soft:#fdecd3; --hl:#fff1a8; --hl-ink:#7a5d00; --red-ink:#a52a21;
+  --accent:#1f5f7a; --accent-soft:#dcebf1;
+  --c-report:#2f6fb5; --c-meet:#178a7a; --c-drill:#d9731a; --c-other:#7b6aa8;
+  --shadow:0 10px 30px rgba(20,35,45,.14);
+  --f-display:"LXGW WenKai TC","Noto Serif TC",serif;
+  --f-body:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#121a1f; --paper:#1a242a; --ink:#e6ecef; --muted:#93a1a9; --line:#2d3a42;
+  --red:#ff7a6c; --red-soft:#3a2224; --ev-soft:#3d2f1c; --hl:#4a4014; --hl-ink:#ffe27a; --red-ink:#ff9c90;
+  --accent:#7cc3df; --accent-soft:#1f3640;
+  --c-report:#7fb2ee; --c-meet:#5dcbb9; --c-drill:#f2a35c; --c-other:#b5a6e3;
+  --shadow:0 10px 30px rgba(0,0,0,.5); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#121a1f; --paper:#1a242a; --ink:#e6ecef; --muted:#93a1a9; --line:#2d3a42;
+  --red:#ff7a6c; --red-soft:#3a2224; --ev-soft:#3d2f1c; --hl:#4a4014; --hl-ink:#ffe27a; --red-ink:#ff9c90;
+  --accent:#7cc3df; --accent-soft:#1f3640;
+  --c-report:#7fb2ee; --c-meet:#5dcbb9; --c-drill:#f2a35c; --c-other:#b5a6e3;
+  --shadow:0 10px 30px rgba(0,0,0,.5); color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:14px;line-height:1.5}
+.wrap{max-width:1240px;margin:0 auto;padding-block:20px 96px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+header.top{display:flex;flex-wrap:wrap;align-items:flex-end;justify-content:space-between;gap:12px 24px;margin-bottom:16px}
+.eyebrow{font-size:12px;letter-spacing:.12em;color:var(--muted)}
+h1{font-family:var(--f-display);font-weight:700;font-size:clamp(26px,4vw,38px);line-height:1.15;margin:2px 0 0;text-wrap:balance}
+h1 .yr{color:var(--red)}
+.tools{display:flex;flex-wrap:wrap;gap:8px;align-items:center}
+.seg{display:inline-flex;border:1px solid var(--line);border-radius:999px;background:var(--paper);padding:3px}
+.seg button{border:0;background:none;color:var(--muted);font:inherit;font-size:13px;padding:5px 14px;border-radius:999px;cursor:pointer}
+.seg button[aria-pressed="true"]{background:var(--ink);color:var(--paper)}
+.btn{border:1px solid var(--line);background:var(--paper);color:var(--ink);font:inherit;font-size:13px;padding:6px 12px;border-radius:8px;cursor:pointer}
+.btn:hover{border-color:var(--muted)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--paper)}
+.btn.danger{color:var(--red-ink)}
+button:focus-visible,input:focus-visible,select:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.mode{font-size:12px;color:var(--muted);display:flex;align-items:center;gap:6px}
+.mode .dot{width:8px;height:8px;border-radius:50%;background:var(--muted)}
+.mode.edit .dot{background:var(--c-meet)}
+
+.summary{display:flex;flex-wrap:wrap;gap:10px 28px;align-items:baseline;padding:12px 0 14px;border-top:1px solid var(--line);border-bottom:1px solid var(--line);margin-bottom:18px}
+.stat b{font-size:22px;font-variant-numeric:tabular-nums;font-weight:700;margin-right:3px}
+.stat.off b{color:var(--red)}
+.stat span{color:var(--muted);font-size:13px}
+.runs{display:flex;flex-wrap:wrap;gap:6px;flex:1 1 360px;min-width:0}
+.run{font-size:12px;border:1px solid var(--red-soft);background:var(--red-soft);color:var(--red-ink);border-radius:999px;padding:2px 10px;cursor:pointer;font-family:inherit}
+.run small{opacity:.75;margin-left:4px;font-variant-numeric:tabular-nums}
+
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:12px;color:var(--muted);margin:-6px 0 14px}
+.legend i{display:inline-block;width:10px;height:10px;border-radius:3px;margin-right:5px;vertical-align:-1px}
+
+/* Year view */
+.year{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:14px}
+.month{background:var(--paper);border:1px solid var(--line);border-radius:10px;padding:12px 10px 10px}
+.month h2{display:flex;align-items:baseline;justify-content:space-between;margin:0 4px 6px;font-family:var(--f-display);font-size:20px;font-weight:700}
+.month h2 button{font:inherit;font-size:12px;font-family:var(--f-body);color:var(--accent);background:none;border:0;cursor:pointer;padding:2px 4px}
+.grid{display:grid;grid-template-columns:repeat(7,1fr);gap:2px}
+.dow{text-align:center;font-size:12px;color:var(--muted);padding:2px 0}
+.dow.we{color:var(--red)}
+.day{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;gap:0;border:0;background:none;color:var(--ink);font:inherit;padding:4px 0 5px;border-radius:6px;cursor:pointer;min-height:46px;min-width:0}
+.day .n{font-size:16px;font-variant-numeric:tabular-nums;line-height:1.2}
+.day .l{font-size:10px;color:var(--muted);line-height:1.2;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;max-width:100%;padding:0 1px}
+.day.off{background:var(--red-soft)}
+.day.has-ev{background:var(--ev-soft)}
+.day.off .n{color:var(--red);font-weight:700}
+.day.named .l{color:var(--red-ink);font-weight:500}
+.day.term .l{color:var(--accent)}
+.day.hl,.mcell.hl{background:var(--hl)}
+.day .l.mkl{color:var(--hl-ink);font-weight:700;font-size:11px}
+.mk{align-self:flex-start;font-size:12px;font-weight:700;color:var(--hl-ink);border:1px solid var(--hl-ink);border-radius:4px;padding:0 6px;line-height:1.5}
+.day .l.drl,.mcell .l.drl{font-size:12px;font-weight:700}
+.day:hover{outline:1px solid var(--line)}
+.day.sel{outline:2px solid var(--ink);outline-offset:-1px}
+.day.today .n{text-decoration:underline;text-underline-offset:3px}
+.day .dots{position:absolute;top:3px;right:3px;display:flex;gap:2px}
+.day .dots i{width:5px;height:5px;border-radius:50%}
+.day.changed::after{content:"";position:absolute;left:3px;top:3px;width:5px;height:5px;border:1.5px solid var(--accent);border-radius:50%}
+
+/* Month view */
+.mhead{display:flex;align-items:center;gap:10px;margin-bottom:10px}
+.mhead h2{font-family:var(--f-display);font-size:28px;margin:0;flex:1}
+.mhead h2 small{font-family:var(--f-body);font-size:14px;color:var(--muted);margin-left:8px;font-weight:400}
+.mscroll{overflow-x:auto}
+.mgrid{display:grid;grid-template-columns:repeat(7,minmax(96px,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:10px;overflow:hidden;min-width:680px}
+.mgrid .dow{background:var(--paper);padding:6px 0;font-size:13px}
+.mcell{background:var(--paper);min-height:108px;padding:6px 7px;text-align:left;border:0;font:inherit;color:var(--ink);cursor:pointer;display:flex;flex-direction:column;gap:3px;min-width:0}
+.mcell.blank{cursor:default;background:var(--bg)}
+.mcell.off{background:var(--red-soft)}
+.mcell.has-ev{background:var(--ev-soft)}
+.mcell .top{display:flex;align-items:baseline;gap:6px}
+.mcell .n{font-size:18px;font-weight:700;font-variant-numeric:tabular-nums}
+.mcell.off .n{color:var(--red)}
+.mcell .l{font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.mcell.named .l{color:var(--red-ink);font-weight:500}
+.mcell.sel{box-shadow:inset 0 0 0 2px var(--ink)}
+.ev{font-size:12px;line-height:1.3;padding:2px 6px;border-radius:4px;border-left:3px solid currentColor;background:var(--bg);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.ev span{color:var(--ink)}
+.more{font-size:11px;color:var(--muted)}
+.ev .tag{font-weight:700;margin-right:4px}
+.stat.cats{display:flex;gap:14px;font-size:13px;color:var(--muted)}
+.stat.cats b{font-size:18px;color:var(--ink);margin:0}
+.stat.cats i{display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:4px}
+select.mini{display:block;margin-top:6px;font-size:12px;padding:3px 6px}
+.evlist .loc{display:inline-block;font-size:12px;color:var(--muted);border:1px solid var(--line);border-radius:4px;padding:0 6px;margin-right:6px}
+.evlist .t:empty::before{content:"（未填內容）";color:var(--muted)}
+
+/* Side sheet */
+.sheet{position:fixed;top:0;right:0;bottom:0;width:min(380px,100%);background:var(--paper);box-shadow:var(--shadow);border-left:1px solid var(--line);z-index:20;display:flex;flex-direction:column;padding-top:calc(16px + env(safe-area-inset-top,0px));padding-bottom:calc(16px + env(safe-area-inset-bottom,0px));padding-left:20px;padding-right:max(20px,env(safe-area-inset-right,0px));overflow-y:auto;gap:16px}
+@media (max-width:640px){.sheet{top:auto;width:100%;max-height:80vh;border-left:0;border-top:1px solid var(--line);border-radius:16px 16px 0 0;padding-left:max(18px,env(safe-area-inset-left,0px));padding-right:max(18px,env(safe-area-inset-right,0px))}}
+.sheet .hd{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.sheet .date{font-family:var(--f-display);font-size:28px;font-weight:700;line-height:1.1}
+.sheet .sub{color:var(--muted);font-size:13px;margin-top:4px}
+.pill{display:inline-block;font-size:12px;padding:2px 10px;border-radius:999px;background:var(--accent-soft);color:var(--accent);font-weight:500}
+.pill.off{background:var(--red-soft);color:var(--red-ink)}
+.sheet h3{font-size:12px;letter-spacing:.1em;color:var(--muted);margin:0 0 8px;font-weight:500}
+.field{display:flex;flex-direction:column;gap:6px}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}
+input[type=text],select{font:inherit;font-size:14px;color:var(--ink);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:7px 10px;min-width:0}
+input[type=text]{flex:1 1 160px}
+.evlist{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:6px}
+.evlist li{display:flex;align-items:center;gap:8px;padding:8px 10px;border:1px solid var(--line);border-radius:8px}
+.evlist .cat{font-size:11px;font-weight:700;padding:1px 7px;border-radius:4px;color:var(--paper);flex:none}
+.evlist .t{flex:1;min-width:0;overflow-wrap:anywhere}
+.evlist button{border:0;background:none;color:var(--muted);cursor:pointer;font-size:16px;line-height:1;padding:2px 4px}
+.empty{color:var(--muted);font-size:13px}
+.hint{color:var(--muted);font-size:12px}
+
+/* Summary window */
+.sum-btn{background:var(--ink);color:var(--paper);border-color:var(--ink)}
+.modal{position:fixed;inset:0;z-index:40;background:rgba(15,25,30,.45);display:flex;align-items:flex-start;justify-content:center;overflow-y:auto;padding-block:calc(24px + env(safe-area-inset-top,0px)) calc(24px + env(safe-area-inset-bottom,0px));padding-left:max(12px,env(safe-area-inset-left,0px));padding-right:max(12px,env(safe-area-inset-right,0px))}
+.mpanel{background:var(--paper);border:1px solid var(--line);border-radius:14px;box-shadow:var(--shadow);width:min(980px,100%);padding:20px;display:flex;flex-direction:column;gap:14px;min-width:0}
+.mpanel .hd{display:flex;justify-content:space-between;align-items:flex-start;gap:12px}
+.mpanel .date{font-family:var(--f-display);font-size:26px;font-weight:700;line-height:1.1}
+.mpanel .sub{color:var(--muted);font-size:13px;margin-top:4px}
+.tscroll{overflow-x:auto;border:1px solid var(--line);border-radius:10px}
+table.sum{border-collapse:collapse;width:100%;min-width:640px;font-size:13px;font-variant-numeric:tabular-nums}
+table.sum th,table.sum td{padding:7px 8px;border-bottom:1px solid var(--line);text-align:center;white-space:nowrap}
+table.sum thead th{background:var(--bg);font-weight:500;color:var(--muted);font-size:12px}
+table.sum thead th.grp{color:var(--ink);letter-spacing:.1em}
+table.sum thead th i{display:inline-block;width:8px;height:8px;border-radius:2px;margin-right:4px}
+table.sum tbody th,table.sum tfoot th{text-align:left;font-weight:500}
+table.sum .sep,table.sum [data-sep]{border-left:2px solid var(--line)}
+table.sum .zero{color:var(--line)}
+table.sum .tot{font-weight:700;border-left:2px solid var(--line)}
+table.sum tbody tr.none th{color:var(--muted)}
+table.sum tfoot th,table.sum tfoot td{background:var(--ev-soft);font-weight:700;border-bottom:0}
+.lh{font-size:12px;letter-spacing:.1em;color:var(--muted);margin:4px 0 0;font-weight:500}
+.detail{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:12px}
+.detail section{border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-width:0}
+.detail h4{margin:0 0 6px;font-family:var(--f-display);font-size:18px}
+.detail h4 small{font-family:var(--f-body);font-size:12px;color:var(--muted);font-weight:400;margin-left:6px}
+.detail ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:2px}
+.detail li button{width:100%;display:flex;align-items:center;gap:8px;border:0;background:none;color:var(--ink);font:inherit;font-size:13px;text-align:left;padding:5px 4px;border-radius:6px;cursor:pointer;min-width:0}
+.detail li button:hover{background:var(--bg)}
+.detail .dd{font-variant-numeric:tabular-nums;color:var(--muted);width:38px;flex:none}
+.detail .cat{font-size:11px;font-weight:700;padding:1px 6px;border-radius:4px;color:var(--paper);flex:none}
+.detail .pl{flex:none}
+.detail .tx{color:var(--muted);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+
+/* Quarter check */
+:root{--ok:#2e7d4f;--ok-soft:#e1f2e7;--warn:#a36a00;--warn-soft:#fbf0d6}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){--ok:#7fd6a0;--ok-soft:#1c3326;--warn:#f0c46a;--warn-soft:#382d15}}
+:root[data-theme="dark"]{--ok:#7fd6a0;--ok-soft:#1c3326;--warn:#f0c46a;--warn-soft:#382d15}
+.qhd{display:flex;flex-wrap:wrap;align-items:baseline;gap:4px 12px}
+.qgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px}
+.qcard{border:1px solid var(--line);border-left:4px solid var(--warn);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:4px;background:var(--paper);min-width:0}
+.qcard.q-ok,.qcard.q-sub{border-left-color:var(--ok)}
+.qcard.q-miss{border-left-color:var(--red)}
+.qt{display:flex;justify-content:space-between;align-items:baseline}.qt b{font-family:var(--f-display);font-size:18px}.qt span{font-size:12px;color:var(--muted)}
+.qs{font-size:13px;display:flex;align-items:center;gap:6px;flex-wrap:wrap}
+.qb{font-size:12px;font-weight:700;padding:1px 8px;border-radius:999px;background:var(--warn-soft);color:var(--warn)}
+.q-ok .qb,.q-sub .qb{background:var(--ok-soft);color:var(--ok)}
+.q-miss .qb{background:var(--red-soft);color:var(--red-ink)}
+.qn{font-size:12px;color:var(--muted);font-variant-numeric:tabular-nums}
+table.sum small.raw{color:var(--muted);font-weight:400;font-size:11px;margin-left:1px}
+.ql{font-size:12px;color:var(--ink);overflow-wrap:anywhere}
+table.sum tr.qend th,table.sum tr.qend td{border-bottom:2px solid var(--muted)}
+.qchip{display:inline-flex;align-items:center;gap:4px;font:inherit;font-size:12px;border:1px solid var(--warn);background:var(--warn-soft);color:var(--warn);border-radius:999px;padding:2px 10px;cursor:pointer;align-self:center}
+.qchip.all{border-color:var(--ok);background:var(--ok-soft);color:var(--ok)}
+.qchip.bad{border-color:var(--red);background:var(--red-soft);color:var(--red-ink)}
+.qchip i{width:8px;height:8px;border-radius:50%;background:var(--warn)}
+.qchip i.q-ok,.qchip i.q-sub{background:var(--ok)}.qchip i.q-miss{background:var(--red)}
+
+/* Unsaved bar */
+.bar{position:fixed;left:0;right:0;bottom:0;z-index:30;background:var(--ink);color:var(--paper);padding-block:10px calc(10px + env(safe-area-inset-bottom,0px));padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.bar .in{max-width:1240px;margin:0 auto;display:flex;flex-wrap:wrap;gap:8px 12px;align-items:center}
+.bar .msg{flex:1 1 200px}
+.bar .btn{background:transparent;color:var(--paper);border-color:rgba(255,255,255,.35)}
+.bar .btn.primary{background:var(--paper);color:var(--ink);border-color:var(--paper)}
+@media (prefers-reduced-motion:no-preference){.sheet{animation:slide .18s ease-out}@keyframes slide{from{transform:translateX(16px);opacity:.6}}}
+</style>
+<div id="app"></div>
+<script id="state" type="application/json">{"v":1,"days":{"2027-01-01":{"name":"開國紀念日","off":true},"2027-02-04":{"name":"小年夜","off":true},"2027-02-05":{"name":"除夕","off":true},"2027-02-06":{"name":"春節"},"2027-02-07":{"name":"春節"},"2027-02-08":{"name":"春節","off":true},"2027-02-09":{"name":"春節補假","off":true},"2027-02-10":{"name":"春節補假","off":true},"2027-02-28":{"name":"和平紀念日"},"2027-03-01":{"name":"和平紀念日補假","off":true},"2027-04-04":{"name":"兒童節"},"2027-04-05":{"name":"清明節","off":true},"2027-04-06":{"name":"兒童節補假","off":true},"2027-04-30":{"name":"勞動節補假","off":true},"2027-05-01":{"name":"勞動節"},"2027-06-09":{"name":"端午節","off":true},"2027-09-15":{"name":"中秋節","off":true},"2027-09-28":{"name":"教師節","off":true},"2027-10-10":{"name":"國慶日"},"2027-10-11":{"name":"國慶日補假","off":true},"2027-10-25":{"name":"光復節","off":true},"2027-12-24":{"name":"行憲紀念日補假","off":true},"2027-12-25":{"name":"行憲紀念日"},"2027-12-31":{"name":"開國紀念日補假","off":true},"2027-01-05":{"mark":"發文"},"2027-01-06":{"mark":"發文"},"2027-02-01":{"mark":"發文"},"2027-02-02":{"mark":"發文"},"2027-03-03":{"mark":"發文"},"2027-03-04":{"mark":"發文"},"2027-02-16":{"mark":"協調會"},"2027-02-17":{"mark":"協調會"},"2027-02-18":{"mark":"協調會"},"2027-01-12":{"mark":"協調會"},"2027-01-13":{"mark":"協調會"},"2027-01-14":{"mark":"協調會"},"2027-03-09":{"mark":"協調會"},"2027-03-10":{"mark":"協調會"},"2027-03-11":{"mark":"協調會"},"2027-04-07":{"mark":"發文"},"2027-04-08":{"mark":"發文"},"2027-04-13":{"mark":"協調會"},"2027-04-14":{"mark":"協調會"},"2027-04-15":{"mark":"協調會"},"2027-05-04":{"mark":"發文"},"2027-05-05":{"mark":"發文"},"2027-05-06":{"mark":"發文"},"2027-05-11":{"mark":"協調會"},"2027-05-12":{"mark":"協調會"},"2027-05-13":{"mark":"協調會"},"2027-05-17":{"mark":"公告"},"2027-03-15":{"mark":"公告"},"2027-06-07":{"mark":"發文"},"2027-06-08":{"mark":"發文"},"2027-06-15":{"mark":"協調會"},"2027-06-16":{"mark":"協調會"},"2027-06-17":{"mark":"協調會"},"2027-07-06":{"mark":"發文"},"2027-07-07":{"mark":"發文"},"2027-07-08":{"mark":"發文"},"2027-07-13":{"mark":"協調會"},"2027-07-14":{"mark":"協調會"},"2027-07-15":{"mark":"協調會"}},"events":{"2027-01-20":[{"c":"通報演練","t":"","p":"仁水隧道"}],"2027-02-24":[{"c":"通報演練","t":"","p":"觀音隧道"}],"2027-03-24":[{"c":"例行演練","t":"","p":"谷風隧道"}],"2027-03-25":[{"c":"例行演練","t":"","p":"谷風隧道"}],"2027-04-21":[{"c":"通報演練","t":"","p":"東澳隧道"}],"2027-05-26":[{"c":"專案演練","t":"","p":"中仁隧道"}],"2027-05-27":[{"c":"專案演練","t":"","p":"中仁隧道"}],"2027-06-24":[{"c":"通報演練","t":"","p":"觀音隧道"}],"2027-08-25":[{"c":"例行演練","t":"","p":"東澳隧道"}],"2027-08-26":[{"c":"例行演練","t":"","p":"東澳隧道"}],"2027-09-22":[{"c":"通報演練","t":"","p":"中仁隧道"}],"2027-11-24":[{"c":"例行演練","t":"","p":"觀音隧道"}],"2027-11-25":[{"c":"例行演練","t":"","p":"觀音隧道"}],"2027-10-20":[{"c":"通報演練","t":"","p":"仁水隧道"}],"2027-12-16":[{"c":"通報演練","t":"","p":"谷風隧道"}],"2027-07-21":[{"c":"通報演練","t":"","p":"仁水隧道"}]}}</script>
+<script id="app-js">
+(function(){
+const YEAR=2027;
+const LUNAR="廿四,廿五,廿六,廿七,小寒,廿九,三十,十二月小,初二,初三,初四,初五,初六,初七,初八,初九,初十,十一,十二,大寒,十四,十五,十六,十七,十八,十九,二十,廿一,廿二,廿三,廿四,廿五,廿六,廿七,立春,廿九,正月大,初二,初三,初四,初五,初六,初七,初八,初九,初十,十一,十二,十三,雨水,十五,十六,十七,十八,十九,二十,廿一,廿二,廿三,廿四,廿五,廿六,廿七,廿八,驚蟄,三十,二月大,初二,初三,初四,初五,初六,初七,初八,初九,初十,十一,十二,十三,春分,十五,十六,十七,十八,十九,二十,廿一,廿二,廿三,廿四,廿五,廿六,廿七,廿八,清明,三十,三月小,初二,初三,初四,初五,初六,初七,初八,初九,初十,十一,十二,十三,穀雨,十五,十六,十七,十八,十九,二十,廿一,廿二,廿三,廿四,廿五,廿六,廿七,廿八,廿九,立夏,初二,初三,初四,初五,初六,初七,初八,初九,初十,十一,十二,十三,十四,十五,小滿,十七,十八,十九,二十,廿一,廿二,廿三,廿四,廿五,廿六,廿七,廿八,廿九,三十,五月小,芒種,初三,初四,初五,初六,初七,初八,初九,初十,十一,十二,十三,十四,十五,十六,夏至,十八,十九,二十,廿一,廿二,廿三,廿四,廿五,廿六,廿七,廿八,廿九,六月小,初二,初三,小暑,初五,初六,初七,初八,初九,初十,十一,十二,十三,十四,十五,十六,十七,十八,十九,大暑,廿一,廿二,廿三,廿四,廿五,廿六,廿七,廿八,廿九,七月大,初二,初三,初四,初五,初六,立秋,初八,初九,初十,十一,十二,十三,十四,十五,十六,十七,十八,十九,二十,廿一,處暑,廿三,廿四,廿五,廿六,廿七,廿八,廿九,三十,八月小,初二,初三,初四,初五,初六,初七,白露,初九,初十,十一,十二,十三,十四,十五,十六,十七,十八,十九,二十,廿一,廿二,秋分,廿四,廿五,廿六,廿七,廿八,廿九,九月小,初二,初三,初四,初五,初六,初七,初八,寒露,初十,十一,十二,十三,十四,十五,十六,十七,十八,十九,二十,廿一,廿二,廿三,霜降,廿五,廿六,廿七,廿八,廿九,十月大,初二,初三,初四,初五,初六,初七,初八,初九,立冬,十一,十二,十三,十四,十五,十六,十七,十八,十九,二十,廿一,廿二,廿三,廿四,小雪,廿六,廿七,廿八,廿九,三十,十一月大,初二,初三,初四,初五,初六,初七,初八,初九,大雪,十一,十二,十三,十四,十五,十六,十七,十八,十九,二十,廿一,廿二,廿三,廿四,冬至,廿六,廿七,廿八,廿九,三十,十二月小,初二,初三,初四".split(",");
+const TERMS=new Set("小寒,大寒,立春,雨水,驚蟄,春分,清明,穀雨,立夏,小滿,芒種,夏至,小暑,大暑,立秋,處暑,白露,秋分,寒露,霜降,立冬,小雪,大雪,冬至".split(","));
+const DOW=["日","一","二","三","四","五","六"];
+const MON=["一","二","三","四","五","六","七","八","九","十","十一","十二"];
+const CATS=[["通報演練","var(--c-report)"],["例行演練","var(--c-meet)"],["專案演練","var(--c-drill)"]];
+const catColor=c=>(CATS.find(x=>x[0]===c)||["","var(--c-other)"])[1];
+const PLACES=["東澳隧道","觀音隧道","谷風隧道","中仁隧道","仁水隧道"];
+function placeSel(id,cur,attr){return'<select id="'+id+'"'+(attr||"")+' aria-label="演練地點"><option value="">（未指定地點）</option>'+PLACES.map(x=>'<option'+(x===cur?" selected":"")+">"+x+"</option>").join("")+"</select>"}
+const evText=e=>e.t||e.c;
+
+const saved=JSON.parse(document.getElementById("state").textContent);
+Object.values(saved.events).forEach(a=>a.forEach(e=>{if(e.c==="演練"&&e.s){e.c=e.s.replace("力行","例行");delete e.s}}));
+let state=JSON.parse(JSON.stringify(saved));
+let canEdit=false, art=null, saving=false;
+const now=new Date();
+const todayKey=now.getFullYear()===YEAR?keyOf(now.getMonth(),now.getDate()):null;
+let view={mode:"year",month:todayKey?now.getMonth():0};
+let sel=null, showSum=false;
+const app=document.getElementById("app");
+
+function pad(n){return String(n).padStart(2,"0")}
+function keyOf(m,d){return YEAR+"-"+pad(m+1)+"-"+pad(d)}
+function esc(s){return String(s).replace(/[&<>"']/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[c]))}
+function dim(m){return new Date(YEAR,m+1,0).getDate()}
+function idx(k){const[y,m,d]=k.split("-").map(Number);return Math.round((Date.UTC(y,m-1,d)-Date.UTC(YEAR,0,1))/864e5)}
+function info(k,s){s=s||state;const[y,m,d]=k.split("-").map(Number);const dow=new Date(y,m-1,d).getDay();const o=s.days[k]||{};
+  const off=("off" in o)?o.off:(dow===0||dow===6);const lunar=LUNAR[idx(k)]||"";
+  return{dow,off,name:o.name||"",mark:o.mark||"",lunar,term:TERMS.has(lunar),events:s.events[k]||[]}}
+function label(i){return i.name||i.lunar}
+function changed(k){return JSON.stringify(state.days[k]||null)!==JSON.stringify(saved.days[k]||null)||JSON.stringify(state.events[k]||null)!==JSON.stringify(saved.events[k]||null)}
+function changeCount(){const ks=new Set([...Object.keys(state.days),...Object.keys(saved.days),...Object.keys(state.events),...Object.keys(saved.events)]);let n=0;ks.forEach(k=>{if(changed(k))n++});return n}
+
+function allKeys(){const a=[];for(let m=0;m<12;m++)for(let d=1;d<=dim(m);d++)a.push(keyOf(m,d));return a}
+function runs(){const ks=allKeys(),out=[];let cur=[];
+  const flush=()=>{if(cur.length>=3){const nm=cur.map(k=>info(k).name).find(Boolean)||"連假";out.push({start:cur[0],end:cur[cur.length-1],len:cur.length,name:nm.replace(/補假$/,"").replace(/^.*?(春節|除夕|小年夜).*$/,"春節")})}cur=[]};
+  ks.forEach(k=>{if(info(k).off)cur.push(k);else flush()});flush();return out}
+function md(k){const[,m,d]=k.split("-").map(Number);return m+"/"+d}
+
+function qChip(){const qs=quarters();const ok=qs.filter(x=>x.st==="ok"||x.st==="sub").length;const bad=qs.some(x=>x.st==="miss");
+  return'<button class="qchip'+(ok===4?" all":bad?" bad":"")+'" data-act="summary">季度檢核 '+ok+'/4 '+qs.map(x=>'<i class="q-'+x.st+'" title="第'+(x.q+1)+'季 '+QS[x.st][0]+'"></i>').join("")+'</button>'}
+const MERGE=new Set(["例行演練","專案演練"]);
+function monthEvents(m){const l=[];for(let d=1;d<=dim(m);d++){const k=keyOf(m,d);(state.events[k]||[]).forEach(e=>l.push(Object.assign({k},e)))}return l}
+function units(list){const out=[],g={};list.forEach(e=>{if(MERGE.has(e.c)){let u=g[e.c];if(!u){u=g[e.c]={c:e.c,places:new Set(),raw:0,ks:[]};out.push(u)}u.raw++;u.ks.push(e.k);if(e.p)u.places.add(e.p)}else out.push({c:e.c,places:new Set(e.p?[e.p]:[]),raw:1,ks:[e.k]})});return out}
+function yearUnits(){const a=[];for(let m=0;m<12;m++)a.push(...units(monthEvents(m)));return a}
+function drillStat(){const all=yearUnits();if(!all.length)return"";
+  return'<div class="stat cats">'+CATS.map(c=>'<span><i style="background:'+c[1]+'"></i>'+c[0].slice(0,2)+' <b>'+all.filter(e=>e.c===c[0]).length+'</b></span>').join("")+'</div>'}
+function quarters(){const out=[];for(let q=0;q<4;q++){const u=[];for(let m=q*3;m<q*3+3;m++)u.push(...units(monthEvents(m)));
+  const r=u.filter(e=>e.c==="例行演練"),p=u.filter(e=>e.c==="專案演練");const ended=now>new Date(YEAR,q*3+3,1);
+  const st=r.length?"ok":p.length?"sub":ended?"miss":"todo";out.push({q,r,p,st})}return out}
+const QS={ok:["符合","已辦例行演練"],sub:["符合","以專案演練取代"],todo:["待排定","尚無例行或專案演練"],miss:["未符合","季內未辦例行或專案演練"]};
+function quarterHtml(){const qs=quarters();const ok=qs.filter(x=>x.st==="ok"||x.st==="sub").length;
+  return'<div class="qhd"><h3 class="lh">季度檢核</h3><span class="hint">每季至少 1 次例行演練；當季有專案演練可取代。已符合 '+ok+' / 4 季</span></div><div class="qgrid">'+qs.map(x=>{const[s1,s2]=QS[x.st];
+    const lst=(x.st==="sub"?x.p:x.r).map(u=>u.ks.map(md).join("、")+([...u.places].length?" "+[...u.places].map(p=>p.replace("隧道","")).join("/"):"")).join("；");
+    return'<div class="qcard q-'+x.st+'"><div class="qt"><b>第 '+(x.q+1)+' 季</b><span>'+(x.q*3+1)+'–'+(x.q*3+3)+' 月</span></div><div class="qs"><span class="qb">'+s1+'</span>'+s2+'</div><div class="qn">例行 '+x.r.length+' 次・專案 '+x.p.length+' 次</div>'+(lst?'<div class="ql">'+esc(lst)+'</div>':'')+'</div>'}).join("")+'</div>'}
+function summaryHtml(){
+  const rows=[],urows=[];for(let m=0;m<12;m++){const l=monthEvents(m);rows.push(l);urows.push(units(l))}
+  const all=rows.flat(),uall=urows.flat();
+  const cnt=(l,f)=>l.filter(f).length;const rawc=(l,f)=>l.filter(f).reduce((a,u)=>a+u.raw,0);
+  const cell=(n,r)=>n?'<td class="num">'+n+(r>n?'<small class="raw" title="實際 '+r+' 場">（'+r+'）</small>':"")+"</td>":'<td class="num zero">·</td>';
+  const cols=[...CATS.map(c=>({h:c[0].slice(0,2),f:u=>u.c===c[0],color:c[1],cat:1})),...PLACES.map(p=>({h:p.replace("隧道",""),f:u=>u.places.has(p)})),{h:"未指定",f:u=>!u.places.size}];
+  const tds=l=>cols.map((c,i)=>cell(cnt(l,c.f),c.cat?rawc(l,c.f):0).replace("<td",'<td'+(i===CATS.length?' data-sep':''))).join("");
+  let h='<div class="modal" role="dialog" aria-modal="true" aria-label="演練彙整"><div class="mpanel"><div class="hd"><div><div class="date">演練彙整</div><div class="sub">116 年各月演練類別與地點，共計 '+uall.length+' 次（'+all.length+' 筆紀錄）</div></div><button class="btn" data-act="sumclose" aria-label="關閉">✕</button></div>';
+  h+=quarterHtml();
+  if(!all.length)return h+'<p class="empty">還沒有演練事項。點行事曆上的日期，選類別與隧道後新增，這裡會自動彙整。</p></div></div>';
+  h+='<div class="tscroll"><table class="sum"><thead><tr><th rowspan="2">月份</th><th colspan="'+CATS.length+'" class="grp">演練類別</th><th colspan="'+(PLACES.length+1)+'" class="grp">演練地點</th><th rowspan="2">合計</th></tr><tr>'+
+    cols.map((c,i)=>'<th class="'+(i===CATS.length?"sep":"")+'">'+(c.color?'<i style="background:'+c.color+'"></i>':"")+c.h+"</th>").join("")+"</tr></thead><tbody>";
+  urows.forEach((l,m)=>{h+='<tr class="'+(l.length?"":"none")+(m%3===2&&m<11?" qend":"")+'"><th>'+(m+1)+" 月</th>"+tds(l)+'<td class="num tot">'+(l.length||"·")+"</td></tr>"});
+  h+='</tbody><tfoot><tr><th>全年</th>'+tds(uall)+'<td class="num tot">'+uall.length+"</td></tr></tfoot></table></div>";
+  h+='<p class="hint">計次規則：例行演練、專案演練同一個月內有多場，只算 1 次，括號內為實際場數；通報演練逐場計算。</p>';
+  h+='<h3 class="lh">逐月明細</h3><div class="detail">';
+  rows.forEach((l,m)=>{if(!l.length)return;h+='<section><h4>'+MON[m]+'月<small>'+l.length+' 項</small></h4><ul>'+
+    l.map(e=>'<li><button data-go="'+e.k+'"><span class="dd">'+md(e.k)+'</span><span class="cat" style="background:'+catColor(e.c)+'">'+esc(e.c)+'</span><span class="pl">'+esc(e.p||"未指定地點")+'</span><span class="tx">'+esc(e.t||"")+"</span></button></li>").join("")+"</ul></section>"});
+  return h+"</div></div></div>"}
+function drillLbl(evs){const cs=[...new Set(evs.map(e=>e.c))];return'<span class="l drl" style="color:'+catColor(cs[0])+'">'+esc(cs.map(c=>c.slice(0,2)).join("·"))+"</span>"}
+function dotsHtml(evs){if(!evs.length)return"";const cs=[...new Set(evs.map(e=>e.c))].slice(0,3);return'<span class="dots">'+cs.map(c=>'<i style="background:'+catColor(c)+'"></i>').join("")+"</span>"}
+
+function render(){
+  const ks=allKeys();const offN=ks.filter(k=>info(k).off).length;const evN=Object.values(state.events).reduce((a,b)=>a+b.length,0);
+  let h='<div class="wrap"><header class="top"><div><div class="eyebrow">中華民國 116 年 · 西元 2027 年</div><h1><span class="yr">116</span> 年演練規劃</h1></div>'+
+    '<div class="tools"><span class="mode'+(canEdit?" edit":"")+'"><span class="dot"></span>'+(canEdit?"可編輯":"檢視模式")+'</span>'+
+    '<div class="seg" role="group" aria-label="檢視"><button data-act="year" aria-pressed="'+(view.mode==="year")+'">全年</button><button data-act="month" aria-pressed="'+(view.mode==="month")+'">單月</button></div><button class="btn sum-btn" data-act="summary">演練彙整</button></div></header>';
+  h+='<section class="summary"><div class="stat off"><b>'+offN+'</b><span>放假日</span></div><div class="stat"><b>'+(ks.length-offN)+'</b><span>上班日</span></div><div class="stat"><b>'+evN+'</b><span>演練事項</span></div>'+drillStat()+qChip()+'<div class="runs">'+
+    runs().map(r=>'<button class="run" data-go="'+r.start+'">'+esc(r.name)+'<small>'+md(r.start)+'–'+md(r.end)+' · '+r.len+'天</small></button>').join("")+'</div></section>';
+  h+='<div class="legend"><span><i style="background:var(--red-soft);border:1px solid var(--red)"></i>放假日</span><span><i style="background:var(--ev-soft);border:1px solid var(--c-drill)"></i>有演練事項</span><span><i style="background:var(--hl);border:1px solid var(--hl-ink)"></i>反黃標記</span>'+CATS.map(c=>'<span><i style="background:'+c[1]+'"></i>'+c[0]+'</span>').join("")+'<span>點日期可'+(canEdit?"編輯":"查看")+'</span></div>';
+  h+=view.mode==="year"?yearHtml():monthHtml(view.month);
+  h+="</div>";
+  if(sel)h+=sheetHtml(sel);
+  if(showSum)h+=summaryHtml();
+  const n=changeCount();
+  if(canEdit&&n)h+='<div class="bar"><div class="in"><span class="msg">'+(saving?"儲存中…":"有 "+n+" 天的變更尚未儲存")+'</span><button class="btn" data-act="revert"'+(saving?" disabled":"")+'>還原</button><button class="btn primary" data-act="save"'+(saving?" disabled":"")+'>儲存變更</button></div></div>';
+  app.innerHTML=h;
+}
+function yearHtml(){let h='<div class="year">';
+  for(let m=0;m<12;m++){h+='<section class="month"><h2>'+MON[m]+'月<button data-month="'+m+'">展開 ›</button></h2><div class="grid">'+DOW.map((d,i)=>'<div class="dow'+(i===0||i===6?" we":"")+'">'+d+"</div>").join("");
+    const first=new Date(YEAR,m,1).getDay();for(let i=0;i<first;i++)h+="<div></div>";
+    for(let d=1;d<=dim(m);d++){const k=keyOf(m,d),i=info(k);
+      const cls=["day",i.off&&"off",i.events.length&&"has-ev",i.mark&&"hl",i.name&&"named",!i.name&&i.term&&"term",sel===k&&"sel",todayKey===k&&"today",canEdit&&changed(k)&&"changed"].filter(Boolean).join(" ");
+      h+='<button class="'+cls+'" data-day="'+k+'" title="'+esc(k+" "+label(i)+(i.mark?" "+i.mark:""))+'"><span class="n">'+d+'</span>'+(i.events.length?drillLbl(i.events):i.mark?'<span class="l mkl">'+esc(i.mark)+"</span>":'<span class="l">'+esc(label(i))+"</span>")+dotsHtml(i.events)+"</button>"}
+    h+="</div></section>"}
+  return h+"</div>"}
+function monthHtml(m){let h='<div class="mhead"><button class="btn" data-mstep="-1"'+(m===0?" disabled":"")+' aria-label="上個月">‹</button><h2>'+MON[m]+'月<small>'+YEAR+" 年 "+(m+1)+' 月</small></h2><button class="btn" data-mstep="1"'+(m===11?" disabled":"")+' aria-label="下個月">›</button></div><div class="mscroll"><div class="mgrid">'+DOW.map((d,i)=>'<div class="dow'+(i===0||i===6?" we":"")+'">'+d+"</div>").join("");
+  const first=new Date(YEAR,m,1).getDay();for(let i=0;i<first;i++)h+='<div class="mcell blank"></div>';
+  for(let d=1;d<=dim(m);d++){const k=keyOf(m,d),i=info(k);
+    const cls=["mcell",i.off&&"off",i.events.length&&"has-ev",i.mark&&"hl",i.name&&"named",sel===k&&"sel"].filter(Boolean).join(" ");
+    h+='<button class="'+cls+'" data-day="'+k+'"><span class="top"><span class="n">'+d+'</span>'+(i.events.length?drillLbl(i.events):'<span class="l">'+esc(label(i))+"</span>")+"</span>"+(i.mark?'<span class="mk">'+esc(i.mark)+"</span>":"")+
+      i.events.slice(0,3).map(e=>'<span class="ev" style="color:'+catColor(e.c)+'">'+(e.p?'<b class="tag">'+esc(e.p.replace("隧道",""))+"</b>":"")+'<span>'+esc(evText(e))+"</span></span>").join("")+(i.events.length>3?'<span class="more">還有 '+(i.events.length-3)+" 項</span>":"")+"</button>"}
+  const tail=(7-(first+dim(m))%7)%7;for(let i=0;i<tail;i++)h+='<div class="mcell blank"></div>';
+  return h+"</div></div>"}
+function sheetHtml(k){const i=info(k);const[,m,d]=k.split("-").map(Number);
+  let h='<aside class="sheet" aria-label="日期詳細"><div class="hd"><div><div class="date">'+m+"月"+d+'日</div><div class="sub">星期'+DOW[i.dow]+" · 農曆 "+esc(i.lunar)+(i.term?"（節氣）":"")+'</div></div><button class="btn" data-act="close" aria-label="關閉">✕</button></div>';
+  h+='<div><span class="pill'+(i.off?" off":"")+'">'+(i.off?"放假日":"上班日")+"</span>"+(i.name?' <b style="color:var(--red-ink);margin-left:6px">'+esc(i.name)+"</b>":"")+(i.mark?' <span class="mk" style="margin-left:6px">'+esc(i.mark)+"</span>":"")+"</div>";
+  if(canEdit){h+='<div class="field"><h3>上班／放假</h3><div class="seg" role="group"><button data-setoff="0" aria-pressed="'+!i.off+'">上班日</button><button data-setoff="1" aria-pressed="'+i.off+'">放假日</button></div></div>'+
+    '<div class="field"><h3>節日／假日名稱</h3><input type="text" id="f-name" value="'+esc(i.name)+'" placeholder="例如：端午節、補假" maxlength="20"></div>'+
+    '<div class="field"><h3>反黃標記／備註</h3><input type="text" id="f-mark" value="'+esc(i.mark)+'" placeholder="例如：發文（留空即取消反黃）" maxlength="20"></div>'}
+  h+='<div class="field"><h3>演練事項</h3>';
+  h+=i.events.length?'<ul class="evlist">'+i.events.map((e,j)=>'<li><span class="cat" style="background:'+catColor(e.c)+'">'+esc(e.c)+'</span><span class="t">'+(e.p&&!canEdit?'<span class="loc">'+esc(e.p)+"</span>":"")+esc(e.t||"")+(canEdit?placeSel("f-evp-"+j,e.p||"",' class="mini" data-evp="'+j+'"'):"")+"</span>"+(canEdit?'<button data-del="'+j+'" aria-label="刪除">×</button>':"")+"</li>").join("")+"</ul>":'<p class="empty">這天還沒有事項'+(canEdit?"，在下方新增第一筆。":"。")+"</p>";
+  h+="</div>";
+  if(canEdit)h+='<form class="field" id="f-add"><div class="row"><select id="f-cat" aria-label="類別">'+CATS.map(c=>"<option>"+c[0]+"</option>").join("")+'</select>'+placeSel("f-loc","")+'<input type="text" id="f-text" placeholder="演練內容（選填），例如：車輛火災" maxlength="60"></div><div class="row"><button class="btn primary" type="submit">新增事項</button><span class="hint">變更會在按「儲存變更」後保存。</span></div></form>';
+  else h+='<p class="hint">只有擁有者可以編輯此行事曆。</p>';
+  return h+"</aside>"}
+
+function setDay(k,patch){const[y,m,d]=k.split("-").map(Number);const dow=new Date(y,m-1,d).getDay();const def=dow===0||dow===6;
+  const o=Object.assign({},state.days[k]||{},patch);if(o.off===def)delete o.off;if(!o.name)delete o.name;if(!o.mark)delete o.mark;
+  if(Object.keys(o).length)state.days[k]=o;else delete state.days[k]}
+
+app.addEventListener("click",e=>{const t=e.target.closest("button");if(!t)return;
+  if(t.dataset.day){sel=t.dataset.day===sel?null:t.dataset.day;render();return}
+  if(t.dataset.month){view={mode:"month",month:+t.dataset.month};render();return}
+  if(t.dataset.go){showSum=false;sel=t.dataset.go;const m=+sel.split("-")[1]-1;if(view.mode==="month")view.month=m;render();return}
+  if(t.dataset.mstep){view.month=Math.max(0,Math.min(11,view.month+ +t.dataset.mstep));render();return}
+  if(t.dataset.setoff!==undefined&&canEdit){setDay(sel,{off:t.dataset.setoff==="1"});render();return}
+  if(t.dataset.del!==undefined&&canEdit){const a=(state.events[sel]||[]).slice();a.splice(+t.dataset.del,1);if(a.length)state.events[sel]=a;else delete state.events[sel];render();return}
+  const act=t.dataset.act;
+  if(act==="year"||act==="month"){view.mode=act;if(act==="month"&&sel)view.month=+sel.split("-")[1]-1;render()}
+  else if(act==="close"){sel=null;render()}
+  else if(act==="summary"){showSum=true;sel=null;render()}
+  else if(act==="sumclose"){showSum=false;render()}
+  else if(act==="revert"){state=JSON.parse(JSON.stringify(saved));render()}
+  else if(act==="save")save();
+});
+app.addEventListener("change",e=>{const t=e.target;
+  if(t.id==="f-name"&&canEdit){setDay(sel,{name:t.value.trim()});render()}
+  else if(t.id==="f-mark"&&canEdit){setDay(sel,{mark:t.value.trim()});render()}
+  else if(t.dataset.evp!==undefined&&canEdit){const a=(state.events[sel]||[]).map(x=>Object.assign({},x));const j=+t.dataset.evp;if(a[j]){if(t.value)a[j].p=t.value;else delete a[j].p;state.events[sel]=a;render()}}});
+app.addEventListener("submit",e=>{if(e.target.id!=="f-add")return;e.preventDefault();if(!canEdit)return;
+  const t=document.getElementById("f-text").value.trim();const c=document.getElementById("f-cat").value;const p=document.getElementById("f-loc").value;const ev={c,t};if(p)ev.p=p;
+  state.events[sel]=(state.events[sel]||[]).concat([ev]);render();const f=document.getElementById("f-text");if(f)f.focus()});
+document.addEventListener("keydown",e=>{if(e.key!=="Escape")return;if(showSum){showSum=false;render()}else if(sel){sel=null;render()}});
+app.addEventListener("click",e=>{if(e.target.classList&&e.target.classList.contains("modal")){showSum=false;render()}});
+
+function buildDoc(){
+  const reset=(document.head.querySelector("style")||{}).textContent||":root{color-scheme:light;padding-top:env(safe-area-inset-top);padding-bottom:env(safe-area-inset-bottom)}body{margin:0;font:14px system-ui,sans-serif}img{max-width:100%}[hidden]{display:none!important}";
+  const q=s=>document.querySelector(s).outerHTML;
+  const json=JSON.stringify(state).replace(/</g,"\\u003c");
+  return '<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>'+reset+"</style></head><body>"+
+    q("title")+"\n"+q('meta[name="claude:viewport-fit-sides"]')+"\n"+q('link[rel="stylesheet"]')+"\n"+q("#page-style")+'\n<div id="app"></div>\n<script id="state" type="application/json">'+json+"<\/script>\n"+
+    '<script id="app-js">'+document.getElementById("app-js").textContent+"<\/script>\n</body></html>"}
+async function save(){if(!art||saving)return;saving=true;render();
+  try{await art.publish(buildDoc())}
+  catch(err){saving=false;const c=err&&err.code;
+    if(c==="conflict"){return}
+    if(c==="not_writer"||c==="not_granted"||c==="not_declared"){canEdit=false;render();return}
+    render();const bar=document.querySelector(".bar .msg");if(bar)bar.textContent=c==="rate_limited"?"儲存太頻繁，請稍候再按一次":"儲存失敗，請再按一次儲存";}
+}
+render();
+(async()=>{try{if(!window.claude||!claude.use)return;const[u,a]=await Promise.all([claude.use("user"),claude.use("artifact")]);
+  art=a;canEdit=!!(u&&a&&await u.canEdit());if(canEdit)render()}catch(_){}})();
+})();
+</script>
+
+</body></html>
